@@ -1,0 +1,59 @@
+import java.util.ArrayList;
+import java.util.List;
+
+import static java.lang.String.valueOf;
+
+public class Cart implements CartOperation {
+
+    User owner;
+
+    Supermarket supermarket;
+    List<Prodotti> prodotti;
+
+    public Cart(User owner, Supermarket supermarket) {
+        this.owner = owner;
+        this.supermarket = supermarket;
+        this.prodotti = new ArrayList<>();
+    }
+
+    @Override
+    public void stampaCarrello() {
+        System.out.println("nel tuo carrello ci sono questi prodotti:");
+        for (Prodotti p : prodotti) {
+            System.out.printf("\t - %s \n", p);
+
+        }
+    }
+
+    @Override
+    public void rimuoviProdotto(Prodotti p) {
+        System.out.printf("Hai rimosso %s dal tuo carrello:", p);
+        prodotti.remove(p);
+
+    }
+
+    @Override
+    public void aggiungiProdotti(Prodotti p) {
+        if (supermarket.cercaProdotto(p)) {
+            System.out.printf("Hai aggiunto %s al tuo carrello", p);
+            prodotti.add(p);
+            supermarket.rimuoviProdotto(p);
+        } else {
+            System.out.println("Il prodotto non è disponibile");
+        }
+    }
+
+    @Override
+    public void checkoutCarrello() {
+        System.out.println("Elenco dei prodotti nel carrello:");
+        for (Prodotti p : prodotti) {
+            System.out.printf("\t - %s\n", p);
+        }
+        System.out.print("Valore prodotti nel carrello: ");
+        int valoreTotale = 0;
+        for (Prodotti p : prodotti) {
+            valoreTotale += p.getPrezzo();
+        }
+        System.out.print(valoreTotale);
+    }
+}

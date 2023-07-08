@@ -25,5 +25,12 @@ public enum Prodotti {
     PATATE_FRITTE(30),
     HAMBURGER(10);
 
-    Prodotti(Integer number) {}
+    private final int prezzo;
+
+    Prodotti(int prezzo) {
+        this.prezzo = prezzo;
+    }
+    public int getPrezzo(){
+        return prezzo;
+    }
 }

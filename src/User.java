@@ -7,7 +7,7 @@ public class User implements UserOperation {
         List<Supermarket> list = new ArrayList<>();
         for (Supermarket s : SupermarketDatabase.supermarketList) {
             if (s.cercaProdotto(p)) {
-                System.out.printf("Il prodotto %s si trova nel supermarket %s\n", p, s.toString());
+                System.out.printf("Il prodotto %s si trova nel supermarket %s\n", p, s);
                 list.add(s);
             }
         }

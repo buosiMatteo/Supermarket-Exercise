@@ -4,22 +4,59 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Supermarket coop = generaSupermarket(scanner);
-        Supermarket tosano = generaSupermarket(scanner);
-        coop.aggiungiReparto(Reparto.FRUTTA);
-        coop.aggiungiReparto(Reparto.VERDURA);
-        coop.aggiungiReparto(Reparto.CARNE);
-        coop.aggiungiProdotto(Reparto.FRUTTA, Prodotti.MELE);
-        coop.aggiungiProdotto(Reparto.FRUTTA, Prodotti.MELE);
-        coop.aggiungiProdotto(Reparto.FRUTTA, Prodotti.PERE);
-        coop.aggiungiProdotto(Reparto.VERDURA, Prodotti.CETRIOLI);
-        coop.aggiungiProdotto(Reparto.VERDURA, Prodotti.INSALATA);
-        coop.aggiungiProdotto(Reparto.VERDURA, Prodotti.POMODORI);
-        User utente = new User();
-        utente.stampaProdottiSupermarket(coop);
-        utente.cercaReparto(coop, Reparto.SURGELATI);
-        utente.cercaProdotto(Prodotti.MELE);
-        utente.acquistaProdotto(Prodotti.MELE, coop);
-        utente.acquistaProdotto(Prodotti.MELE, coop);
+        Supermarket lidl = generaSupermarket(scanner);
+        inizializzaSupermecatoBase(coop);
+        inizializzaSupermercatoGrande(lidl);
+        User user = new User();
+        user.stampaProdottiSupermarket(coop);
+        user.cercaReparto(coop, Reparto.SURGELATI);
+        user.cercaProdotto(Prodotti.MELE);
+        user.acquistaProdotto(Prodotti.MELE, coop);
+        user.acquistaProdotto(Prodotti.MELE, coop);
+        Cart cart1 = new Cart(user,lidl);
+        cart1.aggiungiProdotti(Prodotti.MELE);
+        cart1.aggiungiProdotti(Prodotti.PERE);
+        cart1.stampaCarrello();
+        cart1.checkoutCarrello();
+    }
+
+    private static void inizializzaSupermercatoGrande(Supermarket s) {
+        s.aggiungiReparto(Reparto.FRUTTA);
+        s.aggiungiReparto(Reparto.VERDURA);
+        s.aggiungiReparto(Reparto.CARNE);
+        s.aggiungiReparto(Reparto.PESCE);
+        s.aggiungiReparto(Reparto.SURGELATI);
+        s.aggiungiProdotto(Reparto.FRUTTA, Prodotti.MELE);
+        s.aggiungiProdotto(Reparto.FRUTTA, Prodotti.PERE);
+        s.aggiungiProdotto(Reparto.FRUTTA, Prodotti.FRAGOLE);
+        s.aggiungiProdotto(Reparto.FRUTTA, Prodotti.ALBICOCCHE);
+        s.aggiungiProdotto(Reparto.VERDURA, Prodotti.INSALATA);
+        s.aggiungiProdotto(Reparto.VERDURA, Prodotti.CETRIOLI);
+        s.aggiungiProdotto(Reparto.VERDURA, Prodotti.POMODORI);
+        s.aggiungiProdotto(Reparto.CARNE, Prodotti.MAIALE);
+        s.aggiungiProdotto(Reparto.CARNE, Prodotti.MANZO);
+        s.aggiungiProdotto(Reparto.CARNE, Prodotti.POLLO);
+        s.aggiungiProdotto(Reparto.CARNE, Prodotti.TACCHINO);
+        s.aggiungiProdotto(Reparto.PESCE, Prodotti.SPIGOLA);
+        s.aggiungiProdotto(Reparto.PESCE, Prodotti.CALAMARO);
+        s.aggiungiProdotto(Reparto.PESCE, Prodotti.ORATA);
+        s.aggiungiProdotto(Reparto.PESCE, Prodotti.SEPPIA);
+        s.aggiungiProdotto(Reparto.SURGELATI, Prodotti.GELATI);
+        s.aggiungiProdotto(Reparto.SURGELATI, Prodotti.PIZZA);
+        s.aggiungiProdotto(Reparto.SURGELATI, Prodotti.PATATE_FRITTE);
+        s.aggiungiProdotto(Reparto.SURGELATI, Prodotti.MINESTRONE);
+    }
+
+    private static void inizializzaSupermecatoBase(Supermarket s) {
+        s.aggiungiReparto(Reparto.FRUTTA);
+        s.aggiungiReparto(Reparto.VERDURA);
+        s.aggiungiReparto(Reparto.CARNE);
+        s.aggiungiProdotto(Reparto.FRUTTA, Prodotti.MELE);
+        s.aggiungiProdotto(Reparto.FRUTTA, Prodotti.MELE);
+        s.aggiungiProdotto(Reparto.FRUTTA, Prodotti.PERE);
+        s.aggiungiProdotto(Reparto.VERDURA, Prodotti.CETRIOLI);
+        s.aggiungiProdotto(Reparto.VERDURA, Prodotti.INSALATA);
+        s.aggiungiProdotto(Reparto.VERDURA, Prodotti.POMODORI);
     }
 
     private static Supermarket generaSupermarket(Scanner scanner) {

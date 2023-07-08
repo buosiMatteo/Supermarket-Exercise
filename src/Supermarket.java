@@ -34,6 +34,17 @@ public class Supermarket implements SupermarketOperation {
     }
 
     @Override
+    public Prodotti rimuoviProdotto(Prodotti p) {
+        if (prodotti.containsKey(p)){
+            prodotti.remove(p);
+            return p;
+        }else {
+            System.out.println("Il prodotto non è disponibile");
+            return null;
+        }
+    }
+
+    @Override
     public String toString() {
         return String.format("%s sito in %s", nome, indirizzo);
     }
