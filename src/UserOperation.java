@@ -10,5 +10,5 @@ public interface UserOperation {
 
     boolean cercaReparto(Supermarket s, Reparto r);
 
-    Prodotti acquistaProdotto(Prodotti p, Supermarket s);
+    Prodotti acquistaProdotto(Prodotti p, Supermarket s) throws UnvailableProductExeption;
 }

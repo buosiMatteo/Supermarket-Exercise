@@ -35,7 +35,7 @@ public class Cart implements CartOperation {
     @Override
     public void aggiungiProdotti(Prodotti p) {
         if (supermarket.cercaProdotto(p)) {
-            System.out.printf("Hai aggiunto %s al tuo carrello", p);
+            System.out.printf("Hai aggiunto %s al tuo carrello\n", p);
             prodotti.add(p);
             supermarket.rimuoviProdotto(p);
         } else {

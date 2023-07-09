@@ -11,8 +11,16 @@ public class Main {
         user.stampaProdottiSupermarket(coop);
         user.cercaReparto(coop, Reparto.SURGELATI);
         user.cercaProdotto(Prodotti.MELE);
-        user.acquistaProdotto(Prodotti.MELE, coop);
-        user.acquistaProdotto(Prodotti.MELE, coop);
+        try{
+            user.acquistaProdotto(Prodotti.MELE, coop);
+        } catch (UnvailableProductExeption e){
+            System.out.println(e.getMessage());
+        }
+        try{
+            user.acquistaProdotto(Prodotti.MELE, coop);
+        } catch (UnvailableProductExeption e){
+            System.out.println(e.getMessage());
+        }
         Cart cart1 = new Cart(user,lidl);
         cart1.aggiungiProdotti(Prodotti.MELE);
         cart1.aggiungiProdotti(Prodotti.PERE);
