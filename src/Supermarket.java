@@ -34,13 +34,12 @@ public class Supermarket implements SupermarketOperation {
     }
 
     @Override
-    public Prodotti rimuoviProdotto(Prodotti p) {
-        if (prodotti.containsKey(p)){
+    public void rimuoviProdotto(Prodotti p) {
+        if (!prodotti.containsKey(p)) {
+            return;
+        } else {
             prodotti.remove(p);
-            return p;
-        }else {
-            System.out.println("Il prodotto non è disponibile");
-            return null;
+            return;
         }
     }
 

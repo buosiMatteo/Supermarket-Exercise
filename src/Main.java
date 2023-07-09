@@ -8,24 +8,110 @@ public class Main {
         inizializzaSupermecatoBase(coop);
         inizializzaSupermercatoGrande(lidl);
         User user = new User();
-        user.stampaProdottiSupermarket(coop);
-        user.cercaReparto(coop, Reparto.SURGELATI);
-        user.cercaProdotto(Prodotti.MELE);
-        try{
-            user.acquistaProdotto(Prodotti.MELE, coop);
-        } catch (UnvailableProductExeption e){
-            System.out.println(e.getMessage());
-        }
-        try{
-            user.acquistaProdotto(Prodotti.MELE, coop);
-        } catch (UnvailableProductExeption e){
-            System.out.println(e.getMessage());
-        }
-        Cart cart1 = new Cart(user,lidl);
+        Cart cart1 = new Cart(user, lidl);
+        menuUtente(user, scanner);
         cart1.aggiungiProdotti(Prodotti.MELE);
         cart1.aggiungiProdotti(Prodotti.PERE);
         cart1.stampaCarrello();
         cart1.checkoutCarrello();
+    }
+
+    private static void menuUtente(User user, Scanner scanner) {
+        boolean hasNextLine = true;
+        while (hasNextLine) {
+            System.out.println("Menu utente:");
+            System.out.println("\t - A = cerca prodotto tra i supermercati");
+            System.out.println("\t - B = cerca prodotto in un supermercato");
+            System.out.println("\t - C = stampa prodotti di un supermercato");
+            System.out.println("\t - D = cerca reparto in un supermercato");
+            System.out.println("\t - E = acquista prodotto in un supermercato");
+            System.out.println("\t - X = esci dal menu");
+            System.out.print("Esegui una scelta: ");
+            String choose = scanner.nextLine();
+            char option = choose.trim().toUpperCase().charAt(0);
+            switch (option) {
+                case 'A':
+                    try {
+                        Prodotti p = selezionaProdotto(scanner);
+                        user.cercaProdotto(p);
+                        break;
+                    } catch (IllegalArgumentException e) {
+                        System.out.println(e.getMessage());
+                        break;
+                    }
+                case 'B':
+                    try {
+                        Supermarket s1 = selezionaSupermarket(scanner);
+                        Prodotti p1 = selezionaProdotto(scanner);
+                        user.cercaProdottoSupermarket(s1, p1);
+                        break;
+                    } catch (SupermarketNotExistException | IllegalArgumentException e) {
+                        System.out.println(e.getMessage());
+                        break;
+                    }
+                case 'C':
+                    try {
+                        Supermarket s1 = selezionaSupermarket(scanner);
+                        user.stampaProdottiSupermarket(s1);
+                        break;
+                    } catch (SupermarketNotExistException e) {
+                        System.out.println(e.getMessage());
+                        break;
+                    }
+                case 'D':
+                    try {
+                        Reparto r2 = selezionaReparto(scanner);
+                        Supermarket s2 = selezionaSupermarket(scanner);
+                        user.cercaReparto(s2, r2);
+                        break;
+                    } catch (IllegalArgumentException | SupermarketNotExistException e) {
+                        System.out.println(e.getMessage());
+                        break;
+                    }
+                case 'E':
+                    try {
+                        Prodotti p3 = selezionaProdotto(scanner);
+                        Supermarket s3 = selezionaSupermarket(scanner);
+                        user.acquistaProdotto(p3, s3);
+                        break;
+                    } catch (SupermarketNotExistException | UnvailableProductExeption | IllegalArgumentException e) {
+                        System.out.println(e.getMessage());
+                        break;
+                    }
+                case 'X':
+                    hasNextLine = false;
+                default:
+                    System.out.println("Scelta non riconosciuta");
+            }
+        }
+    }
+
+    private static Reparto selezionaReparto(Scanner scanner) throws IllegalArgumentException {
+        System.out.println("Seleziona reparto:");
+        String r1 = scanner.nextLine();
+        Reparto r = Reparto.valueOf(r1.trim().toUpperCase());
+        return r;
+    }
+
+
+    private static Prodotti selezionaProdotto(Scanner scanner) throws IllegalArgumentException {
+        System.out.print("Quale prodotto vuoi cercare? ");
+        String str = scanner.nextLine();
+        str = str.toUpperCase().trim();
+        Prodotti p = Prodotti.valueOf(str);
+        return p;
+    }
+
+
+    private static Supermarket selezionaSupermarket(Scanner scanner) throws SupermarketNotExistException {
+        System.out.print("Seleziona supermercato: ");
+        String s1 = scanner.nextLine().trim().toUpperCase();
+        for (Supermarket s : SupermarketDatabase.supermarketList) {
+            if (s.nome.equals(s1)) {
+                return s;
+            }
+        }
+        throw new SupermarketNotExistException();
     }
 
     private static void inizializzaSupermercatoGrande(Supermarket s) {

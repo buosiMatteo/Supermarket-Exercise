@@ -34,12 +34,14 @@ public class Cart implements CartOperation {
 
     @Override
     public void aggiungiProdotti(Prodotti p) {
-        if (supermarket.cercaProdotto(p)) {
-            System.out.printf("Hai aggiunto %s al tuo carrello\n", p);
-            prodotti.add(p);
-            supermarket.rimuoviProdotto(p);
-        } else {
-            System.out.println("Il prodotto non è disponibile");
+        try {
+            if (supermarket.cercaProdotto(p)) {
+                System.out.printf("Hai aggiunto %s al tuo carrello\n", p);
+                prodotti.add(owner.acquistaProdotto(p, supermarket));
+                supermarket.rimuoviProdotto(p);
+            }
+        } catch (UnvailableProductExeption e) {
+            System.out.println(e.getMessage());
         }
     }
 

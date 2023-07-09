@@ -46,7 +46,6 @@ public class User implements UserOperation {
     @Override
     public Prodotti acquistaProdotto(Prodotti p, Supermarket s) throws UnvailableProductExeption {
         if (s.prodotti.containsKey(p)) {
-            System.out.println("Il prodotto è diponibile");
             s.prodotti.remove(p);
             return p;
         } else {
