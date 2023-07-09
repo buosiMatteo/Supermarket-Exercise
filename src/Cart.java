@@ -39,6 +39,8 @@ public class Cart implements CartOperation {
                 System.out.printf("Hai aggiunto %s al tuo carrello\n", p);
                 prodotti.add(owner.acquistaProdotto(p, supermarket));
                 supermarket.rimuoviProdotto(p);
+            } else {
+                System.out.println("Prodotto non disponibile");
             }
         } catch (UnvailableProductExeption e) {
             System.out.println(e.getMessage());

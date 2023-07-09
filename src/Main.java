@@ -10,10 +10,43 @@ public class Main {
         User user = new User();
         Cart cart1 = new Cart(user, lidl);
         menuUtente(user, scanner);
-        cart1.aggiungiProdotti(Prodotti.MELE);
-        cart1.aggiungiProdotti(Prodotti.PERE);
-        cart1.stampaCarrello();
-        cart1.checkoutCarrello();
+        menuCarrello(cart1, scanner);
+    }
+
+    private static void menuCarrello(Cart cart1, Scanner scanner) {
+        boolean hasNextLine = true;
+        while (hasNextLine) {
+            System.out.println("Menu carrello:");
+            System.out.println("\t - A = aggiungi prodotto al carrello");
+            System.out.println("\t - B = stampa prodotti nel carrello");
+            System.out.println("\t - C = esegui checkout del carrello");
+            System.out.println("\t - X = esci dal menu");
+            System.out.print("Esegui una scelta: ");
+            String choose = scanner.nextLine();
+            char option = choose.trim().toUpperCase().charAt(0);
+            switch (option){
+                case 'A':
+                    try {
+                        Prodotti p = selezionaProdotto(scanner);
+                        cart1.aggiungiProdotti(p);
+                        break;
+                    } catch (IllegalArgumentException e) {
+                        System.out.println(e.getMessage());
+                        break;
+                    }
+                case 'B':
+                    cart1.stampaCarrello();
+                    break;
+                case 'C':
+                    cart1.checkoutCarrello();
+                    break;
+                case 'X':
+                    hasNextLine=false;
+                    break;
+                default:
+                    System.out.println("Scelta non riconosciuta");
+            }
+        }
     }
 
     private static void menuUtente(User user, Scanner scanner) {
@@ -74,12 +107,14 @@ public class Main {
                         Supermarket s3 = selezionaSupermarket(scanner);
                         user.acquistaProdotto(p3, s3);
                         break;
-                    } catch (SupermarketNotExistException | UnvailableProductExeption | IllegalArgumentException e) {
+                    } catch (SupermarketNotExistException | UnvailableProductExeption |
+                             IllegalArgumentException e) {
                         System.out.println(e.getMessage());
                         break;
                     }
                 case 'X':
                     hasNextLine = false;
+                    break;
                 default:
                     System.out.println("Scelta non riconosciuta");
             }
