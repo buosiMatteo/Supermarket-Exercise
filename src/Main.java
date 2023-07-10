@@ -124,8 +124,7 @@ public class Main {
     private static Reparto selezionaReparto(Scanner scanner) throws IllegalArgumentException {
         System.out.println("Seleziona reparto:");
         String r1 = scanner.nextLine();
-        Reparto r = Reparto.valueOf(r1.trim().toUpperCase());
-        return r;
+        return Reparto.valueOf(r1.trim().toUpperCase());
     }
 
 
@@ -133,8 +132,7 @@ public class Main {
         System.out.print("Quale prodotto vuoi cercare? ");
         String str = scanner.nextLine();
         str = str.toUpperCase().trim();
-        Prodotti p = Prodotti.valueOf(str);
-        return p;
+        return Prodotti.valueOf(str);
     }
 
 

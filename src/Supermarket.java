@@ -19,7 +19,6 @@ public class Supermarket implements SupermarketOperation {
 
     @Override
     public void aggiungiReparto(Reparto r) {
-        System.out.printf("Aggiunto il reparto %s al supermarket %s\n", r, nome);
         reparti.add(r);
     }
 
