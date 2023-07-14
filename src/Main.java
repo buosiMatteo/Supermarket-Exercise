@@ -1,3 +1,8 @@
+import Cart.Cart;
+import User.User;
+import Supermarket.*;
+import Exception.*;
+
 import java.util.Scanner;
 
 public class Main {
@@ -24,7 +29,7 @@ public class Main {
             System.out.print("Esegui una scelta: ");
             String choose = scanner.nextLine();
             char option = choose.trim().toUpperCase().charAt(0);
-            switch (option){
+            switch (option) {
                 case 'A':
                     try {
                         Prodotti p = selezionaProdotto(scanner);
@@ -41,7 +46,7 @@ public class Main {
                     cart1.checkoutCarrello();
                     break;
                 case 'X':
-                    hasNextLine=false;
+                    hasNextLine = false;
                     break;
                 default:
                     System.out.println("Scelta non riconosciuta");
@@ -107,7 +112,7 @@ public class Main {
                         Supermarket s3 = selezionaSupermarket(scanner);
                         user.acquistaProdotto(p3, s3);
                         break;
-                    } catch (SupermarketNotExistException | UnvailableProductExeption |
+                    } catch (SupermarketNotExistException | UnvailableProductException |
                              IllegalArgumentException e) {
                         System.out.println(e.getMessage());
                         break;
@@ -140,7 +145,7 @@ public class Main {
         System.out.print("Seleziona supermercato: ");
         String s1 = scanner.nextLine().trim().toUpperCase();
         for (Supermarket s : SupermarketDatabase.supermarketList) {
-            if (s.nome.equals(s1)) {
+            if (s.getNome().equals(s1)) {
                 return s;
             }
         }

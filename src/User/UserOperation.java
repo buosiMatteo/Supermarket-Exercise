@@ -1,3 +1,8 @@
+package User;
+
+import Supermarket.*;
+import Exception.*;
+
 import java.util.List;
 
 public interface UserOperation {
@@ -10,5 +15,5 @@ public interface UserOperation {
 
     boolean cercaReparto(Supermarket s, Reparto r);
 
-    Prodotti acquistaProdotto(Prodotti p, Supermarket s) throws UnvailableProductExeption;
+    Prodotti acquistaProdotto(Prodotti p, Supermarket s) throws UnvailableProductException;
 }

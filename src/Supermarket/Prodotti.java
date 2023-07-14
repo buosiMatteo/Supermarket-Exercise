@@ -1,3 +1,5 @@
+package Supermarket;
+
 public enum Prodotti {
     MELE(50),
     PERE(75),

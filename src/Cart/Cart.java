@@ -1,14 +1,18 @@
+package Cart;
+
+import Supermarket.*;
+import User.*;
+import Exception.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.lang.String.valueOf;
-
 public class Cart implements CartOperation {
 
-    User owner;
+    private final User owner;
 
-    Supermarket supermarket;
-    List<Prodotti> prodotti;
+    private final Supermarket supermarket;
+    private final List<Prodotti> prodotti;
 
     public Cart(User owner, Supermarket supermarket) {
         this.owner = owner;
@@ -42,8 +46,8 @@ public class Cart implements CartOperation {
             } else {
                 System.out.println("Prodotto non disponibile");
             }
-        } catch (UnvailableProductExeption e) {
-            System.out.println(e.getMessage());
+        } catch (UnvailableProductException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -59,5 +63,6 @@ public class Cart implements CartOperation {
             valoreTotale += p.getPrezzo();
         }
         System.out.print(valoreTotale);
+        System.out.println();
     }
 }

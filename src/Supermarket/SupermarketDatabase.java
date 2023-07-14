@@ -1,3 +1,7 @@
+package Supermarket;
+
+import Supermarket.Supermarket;
+
 import java.util.ArrayList;
 import java.util.List;
 

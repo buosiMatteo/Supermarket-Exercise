@@ -1,3 +1,5 @@
+package Supermarket;
+
 public enum Reparto {
     FRUTTA,
     VERDURA,

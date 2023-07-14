@@ -1,13 +1,15 @@
+package Supermarket;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class Supermarket implements SupermarketOperation {
-    String nome;
-    String indirizzo;
-    List<Reparto> reparti;
-    Map<Prodotti, Reparto> prodotti;
+    private String nome;
+    private String indirizzo;
+    public List<Reparto> reparti;
+    public Map<Prodotti, Reparto> prodotti;
 
     public Supermarket(String nome, String indirizzo) {
         this.nome = nome;
@@ -40,6 +42,14 @@ public class Supermarket implements SupermarketOperation {
             prodotti.remove(p);
             return;
         }
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getIndirizzo() {
+        return indirizzo;
     }
 
     @Override

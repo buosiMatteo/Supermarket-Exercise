@@ -1,3 +1,7 @@
+package Cart;
+
+import Supermarket.*;
+
 public interface CartOperation {
     void stampaCarrello();
     void rimuoviProdotto(Prodotti p);

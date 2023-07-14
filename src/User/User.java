@@ -1,3 +1,8 @@
+package User;
+
+import Supermarket.*;
+import Exception.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,14 +48,14 @@ public class User implements UserOperation {
         }
     }
 
+
     @Override
-    public Prodotti acquistaProdotto(Prodotti p, Supermarket s) throws UnvailableProductExeption {
+    public Prodotti acquistaProdotto(Prodotti p, Supermarket s) throws UnvailableProductException {
         if (s.prodotti.containsKey(p)) {
             s.prodotti.remove(p);
             return p;
         } else {
-            throw new UnvailableProductExeption();
+            throw new UnvailableProductException();
         }
     }
-
 }
